@@ -17,18 +17,17 @@ public:
         queue<pair<TreeNode*, int>> q;
         q.push({root,0});
         vector<vector<int>> res;
-        int level=0;
         while(!q.empty()){
             auto front_pair = q.front();
             TreeNode* front = front_pair.first;
-            int temp_level = front_pair.second;
+            int level = front_pair.second;
             q.pop();
             if(front->left)
-                q.push({front->left, temp_level+1});
+                q.push({front->left, level+1});
             if(front->right)
-                q.push({front->right, temp_level+1});
-            res.resize(temp_level+1);
-            res[temp_level].push_back(front->val);
+                q.push({front->right, level+1});
+            res.resize(level+1);
+            res[level].push_back(front->val);
         }
         return res;
     }
