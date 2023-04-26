@@ -1,1 +1,3 @@
-​
+We'll solve this problem with two while loops. First while loop controls the return, which is set to while number is greater than 9 or greater than equal to 10.
+Then in this while loop we'll take a temp variable total, now in the inner while loop, while num>0, add the digits of num to total and divide num by 10. At last set num = total.
+If num is still greater than 9, again repeat the process. otherwise return num.
