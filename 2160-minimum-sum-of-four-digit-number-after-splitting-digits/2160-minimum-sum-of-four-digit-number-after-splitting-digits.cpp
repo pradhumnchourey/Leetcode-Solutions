@@ -7,12 +7,6 @@ public:
             num/=10;
         }
         sort(temp.begin(), temp.end());
-        int n1=0, n2=0;
-        for(int i=0; i<temp.size(); i++){
-            if(i%2==0)
-                n1=n1*10+temp[i];
-            else n2=n2*10+temp[i];
-        }
-        return n1+n2;
+        return temp[0]*10+temp[2]+temp[1]*10+temp[3];
     }
 };
