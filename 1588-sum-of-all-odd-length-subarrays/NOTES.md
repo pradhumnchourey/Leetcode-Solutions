@@ -1,0 +1,1 @@
+https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/854304/C%2B%2B-O(N)-Single-Line-Logic
