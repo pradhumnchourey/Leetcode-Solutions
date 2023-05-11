@@ -1,7 +1,9 @@
 class Solution {
 public:
     int romanToInt(string s) {
-        //First we'll create a hash_map, of chars and their values
+        ios::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
         unordered_map<char, int> mpp = {{'I',1},
                                         {'V',5},
                                         {'X',10},
@@ -9,12 +11,11 @@ public:
                                         {'C',100},
                                         {'D',500},
                                         {'M',1000}};
-        //now initialise the ans variable with the value of last char of the string s
-        int ans=mpp[s[s.length()-1]];
-        for(int i=s.length()-2; i>=0; i--){   //iterate over the string backwards
-            if(mpp[s[i]]<mpp[s[i+1]])         //if value of ith char is less than, i+1th char
-                ans-=mpp[s[i]];               //then subtract it from ans
-            else ans+=mpp[s[i]];              //else add the value of char in ans
+        int ans=0;
+        for(int i=0; i<s.length(); i++){
+            if(mpp[s[i]]<mpp[s[i+1]])
+                ans-=mpp[s[i]];
+            else ans+=mpp[s[i]];
         }
         return ans;
     }
