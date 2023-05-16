@@ -11,24 +11,18 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        if(head==nullptr)
+        // if head is NULL OR just having a single node, then no need to change anything 
+        if(head == NULL || head -> next == NULL) 
+        {
             return head;
-        if(head->next==nullptr)
-            return head;
-        ListNode* prev=head, *curr=head->next;
-        head = curr;
-        ListNode* temp;
-        while(curr!=nullptr){
-            prev->next = prev->next->next;
-            curr->next = prev;
-            temp = prev;
-            prev = prev->next;
-            if(prev!=nullptr)
-                curr = prev->next;
-            else curr = nullptr;
-            if(curr)
-                temp->next = curr;
         }
-        return head;
+            
+        ListNode* temp; // temporary pointer to store head -> next
+        temp = head->next; // give temp what he want
+        
+        head->next = swapPairs(head->next->next); // changing links
+        temp->next = head; // put temp -> next to head
+        
+        return temp; // now after changing links, temp act as our head
     }
 };
