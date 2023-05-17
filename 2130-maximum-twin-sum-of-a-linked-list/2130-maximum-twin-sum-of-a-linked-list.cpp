@@ -16,20 +16,18 @@ public:
             slow = slow->next;
             fast = fast->next->next;
         }
-        ListNode* head2 = nullptr, *curr = slow->next;
-        // slow->next=null;
-        while(curr!=nullptr){
-            ListNode* next = curr->next;
-            curr->next = head2;
-            head2 = curr;
-            curr = next;
+        stack<int> s;
+        ListNode* temp=slow->next;
+        while(temp){
+            s.push(temp->val);
+            temp = temp->next;
         }
         int sum=0;
-        while(head2){
-            int temp_sum = head->val + head2->val;
+        while(!s.empty()){
+            int temp_sum = head->val + s.top();
             sum = max(sum, temp_sum);
             head=head->next;
-            head2=head2->next;
+            s.pop();
         }
         return sum;
     }
