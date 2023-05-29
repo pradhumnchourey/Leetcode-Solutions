@@ -6,12 +6,14 @@ public:
         //stores the number of columns in the matrix
         int n = matrix[0].size();
         
+        //row and col bool values store the true if there are any 0's in the 
+        //first row or the col, as it will be used as marker
         bool row=false, col=false;
         for(int i=0; i<n; i++)
-            if(matrix[0][i]==0)
+            if(matrix[0][i]==0)         //if any of the first row value is 0, set row=true
                 row=true;
         for(int i=0; i<m; i++)
-            if(matrix[i][0]==0)
+            if(matrix[i][0]==0)         //if any of the first col value is 0, set col=true
                 col=true;
         
         //for each element of the matrix, if it is 0
@@ -41,11 +43,11 @@ public:
         
         //if the 0,0th element is zero set all the elements of that row and column as 0
         if(matrix[0][0]==0){
-            if(row==true)
-                for(int i=0; i<n; i++)
+            if(row==true)                   //if the row is set true
+                for(int i=0; i<n; i++)      //then set all the values of first row as 0
                     matrix[0][i]=0;
-            if(col==true)
-                for(int i=0; i<m; i++)
+            if(col==true)                   //if the row is set true
+                for(int i=0; i<m; i++)      //then set all the values of first row as 0
                     matrix[i][0]=0;
         }
     }
