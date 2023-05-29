@@ -1,70 +1,39 @@
 class Solution {
 public:
     string tictactoe(vector<vector<int>>& moves) {
-        int a, b, p;
-        vector<vector<char>> board(3, vector<char> (3, ' '));
-        for(int i=0; i<moves.size(); i++){
-            if(i%2==0) 
-                board[moves[i][0]][moves[i][1]]='X';
-            else
-                board[moves[i][0]][moves[i][1]]='O'; 
+        vector<vector<char>> grid(3,vector<char>(3));
+        char val = 'x';
+            
+        //fill the grid
+        for (auto a : moves){
+        grid[a[0]][a[1]] = val;
+        if (val == 'x')val ='o';
+            else val = 'x';
         }
-        for(int i=0; i<3; i++){
-            a=0, b=0;
-            for(int j=0; j<3; j++){
-                if(board[i][j]=='X')
-                    a++;
-                else if(board[i][j]=='O') 
-                    b++;
-                else if(board[i][j]==' ')
-                    p++;
-            }
-            if(a==3)
-                return "A";
-            if(b==3) return "B";
+        
+        //if A win or if B win
+        for (int i = 0; i < 3; i++){
+            //check row
+            if (grid[i][0] == 'x' && grid[i][1] == 'x' && grid[i][2] == 'x')return "A";
+            if (grid[i][0] == 'o' && grid[i][1] == 'o' && grid[i][2] == 'o')return "B";
+
+            //check columns
+            if (grid[0][i] == 'x' && grid[1][i] == 'x' && grid[2][i] == 'x')return "A";
+            if (grid[0][i] == 'o' && grid[1][i] == 'o' && grid[2][i] == 'o')return "B";
         }
-        for(int i=0; i<3; i++){
-            a=0, b=0;
-            for(int j=0; j<3; j++){
-                if(board[j][i]=='X')
-                    a++;
-                else if(board[j][i]=='O')
-                    b++;
-                else if(board[j][i]==' ')
-                    p++;
-            }
-            if(a==3)
-                return "A";
-            if(b==3) return "B";
-        }
-        a=0, b=0;
-        for(int i=0; i<3; i++){
-            if(board[i][i]=='X')
-                a++;
-            else if(board[i][i]=='O')
-                b++;
-            else if(board[i][i]==' ')
-                p++;
-        }
-        if(a==3)
-            return "A";
-        if(b==3) return "B";
-        a=0, b=0;
-        int j=2;
-        for(int i=0; i<3; i++){
-            if(board[i][j]=='X')
-                a++;
-            else if(board[i][j]=='O')
-                b++;
-            else if(board[i][j]==' ')
-                p++;
-            j--;
-        }
-        if(a==3)
-            return "A";
-        if(b==3) return "B";
-        if(p)
-            return "Pending";
-        return "Draw";
+        
+        //check diagonal 
+        if (grid[0][0] == 'x' && grid[1][1] == 'x' && grid[2][2] == 'x')return "A";
+        if (grid[0][2] == 'x' && grid[1][1] == 'x' && grid[2][0] == 'x')return "A";
+        if (grid[0][0] == 'o' && grid[1][1] == 'o' && grid[2][2] == 'o')return "B";
+        if (grid[0][2] == 'o' && grid[1][1] == 'o' && grid[2][0] == 'o')return "B";
+
+        
+        //if it is Pending
+        if (moves.size() < 9)return "Pending";
+        
+        
+        //if it's Draw
+        return "Draw";      
     }
 };
