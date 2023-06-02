@@ -49,6 +49,10 @@ public:
             int count=0;                        //temp count
             dfs(adj, visited, count, i);
             max_count = max(max_count, count);
+            
+            //if max_count has reached n, it can simply be returned as it can't be greater than n, and no need to check further
+            if(max_count==n)
+                return max_count;
         }
         
         return max_count;
